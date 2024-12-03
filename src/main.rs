@@ -7,7 +7,8 @@ use std::{
 fn handle_client(mut stream: TcpStream){
     let buf_reader = BufReader::new(&stream);
     let request_line = buf_reader.lines().next().unwrap().unwrap();
-
+    
+    // check request
     let (status_line, filename) = if request_line == "GET / HTTP/1.1" {
         ("HTTP/1.1 200 OK", "hello.html")
     } else {
